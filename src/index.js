@@ -52,7 +52,7 @@ app.use("/api/doc",swaggerUI.serve,swaggerUI.setup(swaggerJSDoc(swaggerSpec)))
 const PORTs = process.env.PORT
 
 app.get('/api', (req, res) =>{
-    return res.send("hola Mauri")
+    return res.send("hola Mauri").json({msg: "anda"})
 })
 
 
