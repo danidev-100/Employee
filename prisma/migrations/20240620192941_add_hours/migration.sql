@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `WorkHours` ADD COLUMN `hourCount` DOUBLE NOT NULL DEFAULT 0;
