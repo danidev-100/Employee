@@ -34,6 +34,7 @@ const router = express.Router();
  *       email: mauri@gmail.com
  *       lastName: snake
  *       userName: maurisnake
+ *       password: maurisnake
  *       role: ADMIN
  */
 
