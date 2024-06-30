@@ -51,7 +51,7 @@ app.use("/api/doc",swaggerUI.serve,swaggerUI.setup(swaggerJSDoc(swaggerSpec)))
 
 const PORTs = process.env.PORT
 
-app.get('/api', (req, res) =>{
+app.get('/', (req, res) =>{
     res.send("hola Mauri").json({msg: "anda"})
 })
 
