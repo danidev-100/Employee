@@ -1,6 +1,6 @@
-    GET     http://localhost:5000/api/employees
-    
+  
 
+ GET  employee-m34by03dx-danisnake1000s-projects.vercel.app
 
 
     
