@@ -31,16 +31,16 @@ export const createEmployee = async (req, res) => {
       },
     });
 
-    const token = jwt.sign(
-      {
-        email: newEmployees.email,
-        role: newEmployees.role,
-      },
-      process.env.SECRET_KEY,
-      {
-        expiresIn: "1h",
-      }
-    );
+    // const token = jwt.sign(
+    //   {
+    //     email: newEmployees.email,
+    //     role: newEmployees.role,
+    //   },
+    //   process.env.SECRET_KEY,
+    //   {
+    //     expiresIn: "1h",
+    //   }
+    // );
 
     // getEmailConfirm(email, name);
 
