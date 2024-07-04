@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 const prisma = new PrismaClient();
 
+    
+
 export const loginEmployees = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -56,7 +58,7 @@ export const profileEmployye = async(req, res) =>{
     
       const employee = await prisma.employee.findUnique({
         where:{
-          email:req.email
+          email: req.email
         }
       })
       return res.json({ msg:"oka perfile employee", user: employee.userName})

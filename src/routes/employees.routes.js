@@ -63,6 +63,7 @@ const router = express.Router();
  *
  */
 
+
 /**
  * @swagger
  * /api/employees:
@@ -82,11 +83,12 @@ const router = express.Router();
  *
  */
 
+
 /**
  * @swagger
  * /api/employees/{id}:
  *  get:
- *    summary: return all employee
+ *    summary: return employee
  *    tags: [Employees]
  *    parameters:
  *      - in: path 
@@ -107,6 +109,67 @@ const router = express.Router();
  *          description: employee not found
  *
  */
+
+
+
+/**
+ * @swagger
+ * /api/employees/{id}:
+ *  delete:
+ *    summary: delete  employee
+ *    tags: [Employees]
+ *    parameters:
+ *      - in: path 
+ *        name: id
+ *        schema:
+ *          type: string
+ *          required: true
+ *          description:  employee deleted
+ *    responses:
+ *        200:
+ *         description: return employee deleted
+ *         content:
+ *        application/json:
+ *          schema:
+ *          type: objet
+ *          $ref: '#/components/schemas/Employee'
+ *        404:
+ *          description: employee not found
+ *
+ */
+
+
+
+/**
+ * @swagger
+ * /api/employees/{id}:
+ *  put:
+ *    summary: update employee
+ *    tags: [Employees]
+ *    parameters:
+ *      - in: path 
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description:  employee updated
+ *    requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *            type: objet
+ *            $ref: '#/components/schemas/Employee'
+ *    responses:
+ *        200:
+ *          description: return employee updated
+ *        404:
+ *          description: employee not found
+ *
+ */
+
+
+
 
 router.post("/", employee.createEmployee);
 

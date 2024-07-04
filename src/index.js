@@ -9,8 +9,8 @@ import swaggerUI from 'swagger-ui-express'
 import path from 'path'
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { config } from 'dotenv'
-config()
+
+
     
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -23,14 +23,14 @@ const swaggerSpec = {
         },
         servers:[
             {
-                url:"https://employee-red.vercel.app/"
+                url:["http://localhost:5000","https://employee-red.vercel.app"]
             }
         ]
     },
     apis: [`${path.join( __dirname,"./routes/*.js")}`]
 }
 const cor ={
-    origin: 'https://employee-red.vercel.app/api/employees',
+    origin: ['http://localhost:5000/api/employees',"https://employee-red.vercel.app/api/employees"],
     credentials: true,
     methods: 'GET, POST, PUT, DELETE, PATCH',
     allowedHeaders: 'Content-Type, Authorization'
@@ -52,7 +52,7 @@ app.use("/api/doc",swaggerUI.serve,swaggerUI.setup(swaggerJSDoc(swaggerSpec)))
 const PORTs = process.env.PORT
 
 app.get('/', (req, res) =>{
-    res.send("hola Mauri").json({msg: "anda"})
+    res.send("hola Mauri esto es la ruta principal..solo para saber si funciona el backend").json({msg: "anda"})
 })
 
 

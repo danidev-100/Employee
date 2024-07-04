@@ -31,18 +31,18 @@ export const createEmployee = async (req, res) => {
       },
     });
 
-    // const token = jwt.sign(
-    //   {
-    //     email: newEmployees.email,
-    //     role: newEmployees.role,
-    //   },
-    //   process.env.SECRET_KEY,
-    //   {
-    //     expiresIn: "1h",
-    //   }
-    // );
+    const token = jwt.sign(
+      {
+        email: newEmployees.email,
+        role: newEmployees.role,
+      },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: "1h",
+      }
+    );
 
-    // getEmailConfirm(email, name);
+     getEmailConfirm(email, name);
 
     return res
       .status(201)
@@ -56,6 +56,8 @@ export const createEmployee = async (req, res) => {
 
   return res.status(404).json({ messenge: "error fatal" });
 };
+
+
 
 export const getEmployees = async (req, res) => {
   const employees = await prisma.employee.findMany({
@@ -77,6 +79,8 @@ export const getEmployees = async (req, res) => {
   res.json(employees);
 };
 
+
+
 export const getEmployeeById = async (req, res) => {
   const employeeId = await prisma.employee.findUnique({
     where: {
@@ -90,30 +94,47 @@ export const getEmployeeById = async (req, res) => {
   res.json(employeeId);
 };
 
+
+
+
 export const deleteEmployee = async (req, res) => {
+
+try {
+  
   const deleteEmployee = await prisma.employee.delete({
     where: {
       id: Number(req.params.id),
     },
   });
-
+  
   if (!deleteEmployee) {
     return res.status(404).json({ error: "Employee not found" });
   }
-
+  
   res.json(deleteEmployee);
+} catch (error) {
+  return res.status(404).json({ error: "Employee no deleted" });
+}
+
 };
+
+
 
 export const updateEmployee = async (req, res) => {
-  const updateEmployee = await prisma.employee.update({
-    where: {
-      id: Number(req.params.id),
-    },
-    data: req.body,
-  });
-  if (!updateEmployee) {
-    return res.status(404).json({ error: "Employee not updated" });
+  try {
+    
+    const updateEmployee = await prisma.employee.update({
+      where: {
+        id: Number(req.params.id),
+      },
+      data: req.body,
+    });
+    if (!updateEmployee) {
+      return res.status(404).json({ error: "Employee not updated" });
+    }
+  
+    return res.status(200).json(updateEmployee);
+  } catch (error) {
+    return res.status(404).json({ error: "Employee not found" });
   }
-
-  return res.status(200).json(updateEmployee);
-};
+}
