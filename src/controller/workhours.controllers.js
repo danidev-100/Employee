@@ -35,8 +35,8 @@ export const gethours = async (work, workO) => {
         hourCount: true,
       },  where: {
         workDate: {
-          gte: new Date(work),
-          lte: new Date(workO),
+          gte: new Date(),
+          lte: new Date(),
         },
       },
       orderBy:{
@@ -52,4 +52,4 @@ export const gethours = async (work, workO) => {
   }
 
 };
-// gethours("2023-01-18 11:00:00.000","2024-12-18 11:00:00.000");
+gethours("2023-01-18 11:00:00.000","2024-12-18 11:00:00.000");

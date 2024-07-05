@@ -23,14 +23,17 @@ const swaggerSpec = {
         },
         servers:[
             {
-                url:["http://localhost:5000","https://employee-red.vercel.app"]
+                url:"http://localhost:5000",
+            }, 
+            {
+                url:"https://employee-red.vercel.app"
             }
         ]
     },
     apis: [`${path.join( __dirname,"./routes/*.js")}`]
 }
 const cor ={
-    origin: ['http://localhost:5000/api/employees',"https://employee-red.vercel.app/api/employees"],
+    origin: ['http://localhost:5000/api/employees',"https://employee-red.vercel.app/api/employee"],
     credentials: true,
     methods: 'GET, POST, PUT, DELETE, PATCH',
     allowedHeaders: 'Content-Type, Authorization'
