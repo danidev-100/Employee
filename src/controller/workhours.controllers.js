@@ -1,4 +1,4 @@
-import { CorporateGroupUnlinkGroupIdSubAccountsPutRequest } from "@getbrevo/brevo";
+
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -28,15 +28,15 @@ export const works = async (req, res) => {
 
 export const gethours = async (work, workO) => {
   try {
-    const workHours = await prisma.workHours.groupBy({
+    const workHourss = await prisma.workHours.groupBy({
       by: ["employeeId","workDate","workIn","workOut"],
 
       _sum: {
         hourCount: true,
       },  where: {
         workDate: {
-          gte: new Date(),
-          lte: new Date(),
+          gte: new Date(work),
+          lte: new Date(workO),
         },
       },
       orderBy:{
@@ -45,11 +45,11 @@ export const gethours = async (work, workO) => {
 
     });
 
-    console.log("las horas trabajdas desde ",work, "hasta",workO,workHours);
-    return workHours
+    console.log(workHourss);
+    return workHourss
   } catch (error) {
   console.log(error);
   }
 
 };
-gethours("2023-01-18 11:00:00.000","2024-12-18 11:00:00.000");
+ gethours("2023-01-18 11:00:00.000","2024-12-18 11:00:00.000");
